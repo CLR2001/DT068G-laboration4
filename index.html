@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Västtrafik: färdtjänst</title>
+  <!--CSS & JavaScript-->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+  <!--Favicon-->
+  <link rel="icon" type="image/png" href="/bilder/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/bilder/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/bilder/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/bilder/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Färdtjänst" />
+  <link rel="manifest" href="/bilder/favicon/site.webmanifest" />
+  <!--Fonts & Icons-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <a href="index.html">
+        <img src="bilder/vt-logo-vit-text.svg" alt="Västtrafiks logo">
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="nav-active">Startsida</a></li>
+          <li><a href="booking.html">Boka resa</a></li>
+          <li><a href="information.html">Information</a></li>
+          <li><a href="contact.html">Kontakt</a></li>
+          <li>
+            <button type="button" class="login-button">
+              <span class="material-symbols-outlined">login</span>
+              <span class="login-text">Logga in</span>
+            </button>
+          </li>
+          <li class="nav-hamburger-item">
+            <button type="button" class="hamburger-button">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <span>Meny</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+        <picture>
+          <source type="image/avif" srcset="bilder/hero-image.avif">
+          <source type="image/webp" srcset="bilder/hero-image.webp">
+          <img src="bilder/hero-image.jpg" alt="" class="hero-image">
+        </picture>
+        <div class="hero-content-container">
+          <div class="hero-content">
+            <h1>Färdtjänst</h1>
+            <p>
+              Din pålitliga färdtjänst. Hantera tillstånd och få en snabb överblick över alla dina resor här.
+            </p>
+          </div>
+        </div>
+      </section>
+    <div class="main-content">
+      <section class="bookings-preview">
+        <h2>Dina bokningar</h2>
+        <div class="bookings-box">
+          <h3>Singel<span class="trips-words">resor:</span></h3>
+
+          <!-----------------------Gör detta i JS------------------------>
+          <div class="trip-container">
+            <p class="trip-item-1">
+              <span id="trip-start">Startplats</span>
+              <span class="material-symbols-outlined">east</span>
+              <span id="trip-end">Slutplats</span>
+            </p>
+            <p class="trip-item-2">
+              <span class="trips-words">Tid:</span><span id="trip-time">10:30</span>
+            </p>
+            <div class="trip-item-3">
+              <button type="button">Ändra</button>
+              <button type="button">Avboka</button>
+            </div>
+            <p class="trip-item-4">
+              <span class="trips-words">Datum:</span><span id="trip-date">17-12-2025</span>
+            </p>
+          </div>
+          <!------------------------------------------------------------->
+
+          <h3>Återkommande<span class="trips-words">resor:</span></h3>
+        </div>
+      </section>
+      <a href="booking.html" class="link-button">Boka resa</a>
+      <section class="faq-section">
+        <h2>Vanliga frågor (FAQ)</h2>
+        <h3>Hur vet jag om jag är berättigad till färdtjänst?</h3>
+        <p>
+          Rätten till färdtjänst baseras på ett beslut från din kommun/region. 
+          Har du inte ett aktivt tillstånd måste du först ansöka hos din handläggare.
+        </p>
+        <h3>Kan jag boka en resa åt någon annan?</h3>
+        <p>
+          Ja, du kan boka åt en annan person om du har tillgång till personens beviljade färdtjänsttillstånd och nödvändiga personuppgifter.
+        </p>
+        <h3>Vad gör jag om min bokade bil blir försenad?</h3>
+        <p>
+          Om din bil är mer än 15 minuter sen, vänligen kontakta vår trafikledning på telefon <b>000-111 22 33</b>. 
+          De kan ge dig en uppdaterad tid.
+        </p>
+        <h3>Är det tillåtet att stanna till på vägen?</h3>
+        <p>
+          Nej, färdtjänst är en direktresa från en adress till en annan. 
+          Eventuella stopp på vägen måste avtalas i förväg och kan påverka taxan eller nekas.
+        </p>
+        <h3>Kan jag ta med mig hjälpmedel, som rullstol eller rullator?</h3>
+        <p>
+          Ja, du får ta med dig nödvändiga hjälpmedel. 
+          Meddela alltid vid bokningen vilka hjälpmedel du har så att du får ett fordon som klarar av transporten på ett säkert sätt.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <nav>
+        <ul>
+          <li><a href="https://www.vasttrafik.se/om-vasttrafik/vasttrafik-ab/" target="_blank">Om oss</a></li>
+          <li><a href="https://www.vasttrafik.se/om-vasttrafik/blogg/" target="_blank">Blogg</a></li>
+          <li><a href="tillganglighetsredogorelser.html">Tillgänglighetsredogörelser</a></li>
+          <li><a href="contact.html">Kontakta oss</a></li>
+          <li>
+            <div>
+              <a href="https://www.vasttrafik.se/" target="_blank"><img src="bilder/vt-logo-vit.svg" alt="Västtrafiks logo"></a>
+              <p>Ludvig Rosenqvist - DT068G</p>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
