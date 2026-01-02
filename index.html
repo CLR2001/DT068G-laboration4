@@ -37,7 +37,7 @@
           <li>
             <button type="button" class="login-button">
               <span class="material-symbols-outlined">login</span>
-              <span class="login-text">Logga in</span>
+              <span>Logga in</span>
             </button>
           </li>
           <li class="nav-hamburger-item">
@@ -69,36 +69,85 @@
           </div>
         </div>
       </section>
-    <div class="main-content">
+    <div class="main-content main-content-index">
       <section class="bookings-preview">
         <h2>Dina bokningar</h2>
-        <div class="bookings-box">
-          <h3>Singel<span class="trips-words">resor:</span></h3>
+        <div class="preview-bookings-box">
+          <h3>Singel<span class="trip-strings">resor:</span></h3>
 
           <!-----------------------Gör detta i JS------------------------>
-          <div class="trip-container">
-            <p class="trip-item-1">
+          <div class="single-trip-container">
+            <p class="s-trip-item-1">
               <span id="trip-start">Startplats</span>
               <span class="material-symbols-outlined">east</span>
               <span id="trip-end">Slutplats</span>
             </p>
-            <p class="trip-item-2">
-              <span class="trips-words">Tid:</span><span id="trip-time">10:30</span>
+            <p class="s-trip-item-2">
+              <span class="trip-strings">Tid:</span>10:30
             </p>
-            <div class="trip-item-3">
+            <div class="s-trip-item-3">
               <button type="button">Ändra</button>
               <button type="button">Avboka</button>
             </div>
-            <p class="trip-item-4">
-              <span class="trips-words">Datum:</span><span id="trip-date">17-12-2025</span>
+            <p class="s-trip-item-4">
+              <span class="trip-strings">Datum:</span>17-12-2025
             </p>
           </div>
-          <!------------------------------------------------------------->
-
-          <h3>Återkommande<span class="trips-words">resor:</span></h3>
+          
+          <h3>Återkommande<span class="trip-strings">resor:</span></h3>
+          <div class="recurring-trip-container">
+            <p class="r-trip-item-1">
+              <span id="trip-start">Startplats</span>
+              <span class="material-symbols-outlined">east</span>
+              <span id="trip-end">Slutplats</span>
+            </p>
+            <div class="r-trip-item-2">
+              <label class="bookings-checkbox">
+                <input type="checkbox" id="m">
+                <span class="bookings-checkbox-box">M</span>
+              </label>
+              <label class="bookings-checkbox">
+                <input type="checkbox" id="ti">
+                <span class="bookings-checkbox-box">T</span>
+              </label>
+              <label class="bookings-checkbox">
+                <input type="checkbox" id="o">
+                <span class="bookings-checkbox-box">O</span>
+              </label>
+              <label class="bookings-checkbox">
+                <input type="checkbox" id="to">
+                <span class="bookings-checkbox-box">T</span>
+              </label>
+              <label class="bookings-checkbox">
+                <input type="checkbox" id="f">
+                <span class="bookings-checkbox-box">F</span>
+              </label>
+              <label class="bookings-checkbox">
+                <input type="checkbox" id="l">
+                <span class="bookings-checkbox-box">L</span>
+              </label>
+              <label class="bookings-checkbox">
+                <input type="checkbox" id="s">
+                <span class="bookings-checkbox-box">S</span>
+              </label>
+            </div>
+            <div class="r-trip-item-3">
+              <p>
+                <span class="trip-strings">Tid:</span>10:30
+              </p>
+              <p>
+                <span class="trip-strings">Datum:</span>17-12-2025
+              </p>
+            </div>
+            <div class="r-trip-item-4">
+              <button type="button">Ändra</button>
+              <button type="button">Avboka</button>
+            </div>
+          </div>
+  
         </div>
       </section>
-      <a href="booking.html" class="link-button">Boka resa</a>
+      <a href="booking.html" class="blue-button link-button">Boka resa</a>
       <section class="faq-section">
         <h2>Vanliga frågor (FAQ)</h2>
         <h3>Hur vet jag om jag är berättigad till färdtjänst?</h3>
@@ -112,7 +161,7 @@
         </p>
         <h3>Vad gör jag om min bokade bil blir försenad?</h3>
         <p>
-          Om din bil är mer än 15 minuter sen, vänligen kontakta vår trafikledning på telefon <b>000-111 22 33</b>. 
+          Om din bil är mer än 15 minuter sen, vänligen kontakta vår trafikledning på telefon <b class="tel">000-111 22 33</b>. 
           De kan ge dig en uppdaterad tid.
         </p>
         <h3>Är det tillåtet att stanna till på vägen?</h3>
@@ -139,7 +188,7 @@
           <li><a href="contact.html">Kontakta oss</a></li>
           <li>
             <div>
-              <a href="https://www.vasttrafik.se/" target="_blank"><img src="bilder/vt-logo-vit.svg" alt="Västtrafiks logo"></a>
+              <a href="index.html"><img src="bilder/vt-logo-vit.svg" alt="Västtrafiks logo"></a>
               <p>Ludvig Rosenqvist - DT068G</p>
             </div>
           </li>

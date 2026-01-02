@@ -30,10 +30,10 @@
       </a>
       <nav>
         <ul>
-          <li><a href="index.html" class="nav-active">Startsida</a></li>
+          <li><a href="index.html">Startsida</a></li>
           <li><a href="booking.html">Boka resa</a></li>
           <li><a href="information.html">Information</a></li>
-          <li><a href="contact.html">Kontakt</a></li>
+          <li><a href="contact.html" class="nav-active">Kontakt</a></li>
           <li>
             <button type="button" class="login-button">
               <span class="material-symbols-outlined">login</span>
@@ -58,7 +58,7 @@
         <picture>
           <source type="image/avif" srcset="bilder/hero-image.avif">
           <source type="image/webp" srcset="bilder/hero-image.webp">
-          <img src="bilder/hero-image.jpg" alt="" class="hero-image">
+          <img src="bilder/hero-image.jpg" alt="" class="hero-image hero-image-contact">
         </picture>
         <div class="hero-content-container">
           <div class="hero-content">
@@ -68,7 +68,28 @@
           </div>
         </div>
       </section>
-    <div class="main-content">
+    <div class="main-content main-content-contact">
+      <div class="contact-form-container">
+        <h2>Frågor och synpunkter</h2>
+        <form class="contact-form">
+          <label for="first-name">Förnamn*</label>
+          <input type="text" name="first-name"  id="first-name" autocomplete="given-name">
+          <label for="surname">Efternamn</label>
+          <input type="text" name="surname" id="surname" autocomplete="family-name">
+          <label for="tel">Telefonnummer</label>
+          <input type="tel" name="tel" id="tel" autocomplete="tel">
+          <label for="email">E-post*</label>
+          <input type="email" name="email" id="email" autocomplete="email">
+          <label for="textarea">Meddelande:</label>
+          <textarea name="textarea" id="textarea"></textarea>
+          <label for="file-button">Bifoga fil</label>
+          <p>Här kan du bifoga filer. Du kan bifoga max 6 st filer. De får inte vara större än 15 MB totalt.</p>
+          <button type="button" class="white-button" id="form-file-button">
+            Lägg till filer
+          </button>
+          <button type="submit" class="blue-button" id="form-submit-button">Skicka meddelande</button>
+        </form>
+      </div>
       
     </div>
   </main>
@@ -83,7 +104,7 @@
           <li><a href="contact.html">Kontakta oss</a></li>
           <li>
             <div>
-              <a href="https://www.vasttrafik.se/" target="_blank"><img src="bilder/vt-logo-vit.svg" alt="Västtrafiks logo"></a>
+              <a href="index.html"><img src="bilder/vt-logo-vit.svg" alt="Västtrafiks logo"></a>
               <p>Ludvig Rosenqvist - DT068G</p>
             </div>
           </li>

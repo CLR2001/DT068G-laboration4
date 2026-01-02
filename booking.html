@@ -30,8 +30,8 @@
       </a>
       <nav>
         <ul>
-          <li><a href="index.html" class="nav-active">Startsida</a></li>
-          <li><a href="booking.html">Boka resa</a></li>
+          <li><a href="index.html">Startsida</a></li>
+          <li><a href="booking.html" class="nav-active">Boka resa</a></li>
           <li><a href="information.html">Information</a></li>
           <li><a href="contact.html">Kontakt</a></li>
           <li>
@@ -58,7 +58,7 @@
         <picture>
           <source type="image/avif" srcset="bilder/hero-image.avif">
           <source type="image/webp" srcset="bilder/hero-image.webp">
-          <img src="bilder/hero-image.jpg" alt="" class="hero-image">
+          <img src="bilder/hero-image.jpg" alt="" class="hero-image hero-image-booking">
         </picture>
         <div class="hero-content-container">
           <div class="hero-content">
@@ -69,8 +69,36 @@
         </div>
       </section>
     <div class="main-content">
-      
+      <div class="bookings-box">
+        <div>
+          <button type="button" id="single-trip-button">Singel</button>
+          <button type="button" id="recurring-trip-button">Återkommande</button>
+        </div>
+        <label for="start">Startplats:</label>
+        <input type="text" name="address" id="start" autocomplete="street-address">
+        <label for="end">Slutplats:</label>
+        <input type="text" name="address" id="end" autocomplete="street-address">
+        <label for="date">Datum:</label>
+        <input type="date" name="date" id="date">
+        <label for="time">Tid:</label>
+        <input type="time" name="time" id="time">
+        <label for="textarea">Meddelande:</label>
+        <textarea name="textarea" id="textarea"></textarea>
+        <button type="submit" class="blue-button" id="book-trip-button">Boka resa</button>
+      </div>
+
+      <section class="bookings-preview">
+        <h2>Dina bokningar</h2>
+        <div class="preview-bookings-box">
+          <h3>Singel<span class="trip-strings">resor:</span></h3>
+          
+          <h3>Återkommande<span class="trip-strings">resor:</span></h3>
+        
+        </div>
+      </section>
     </div>
+
+      
   </main>
 
   <footer>
@@ -83,7 +111,7 @@
           <li><a href="contact.html">Kontakta oss</a></li>
           <li>
             <div>
-              <a href="https://www.vasttrafik.se/" target="_blank"><img src="bilder/vt-logo-vit.svg" alt="Västtrafiks logo"></a>
+              <a href="index.html"><img src="bilder/vt-logo-vit.svg" alt="Västtrafiks logo"></a>
               <p>Ludvig Rosenqvist - DT068G</p>
             </div>
           </li>
