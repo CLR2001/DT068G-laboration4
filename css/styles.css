@@ -32,6 +32,7 @@ body{
 
 .material-symbols-outlined{
   margin: 0 0.5rem;
+  vertical-align: middle;
 }
 
 /* -------------------------- Header and Navigation ------------------------- */
@@ -181,11 +182,6 @@ header nav a{
 }
 
 /* ------------------------------- index.html ------------------------------- */
-.main-content-index{
-  max-width: none;
-}
-
-/* ---------------------------- Bookings preview ---------------------------- */
 .bookings-preview{
   width: 100%;
 }
@@ -194,7 +190,9 @@ header nav a{
   text-align: center;
 }
 
-.preview-bookings-box{
+.preview-bookings-box, .bookings-box{
+  max-width: 800px;
+  margin: auto;
   margin-top: 1rem;
   padding: 2rem;
   background-color: white;
@@ -210,7 +208,6 @@ header nav a{
 
 .faq-section{
   max-width: clamp(55ch, 80%, 75ch);
-  margin: auto;
 }
 
 .faq-section h3{
@@ -222,8 +219,165 @@ header nav a{
 }
 
 /* ------------------------------ booking.html ------------------------------ */
+.bookings-box{
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
+.bookings-box-buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  height: 100px;
+}
 
+.bookings-box-buttons button{
+  all: unset;
+  height: 100%;
+  width: 100%;
+  color: #222222;
+  font-size: 1.1rem;
+  font-weight: 550;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#recurring-trip-button{
+  box-shadow: inset 5px -5px 10px rgba(0, 40, 60, 0.1);
+  background-color: #dfdfdf;
+}
+
+.booking-form{
+  padding: min(2rem, 5vw);
+}
+
+.recurring-option{
+  display: none;
+}
+
+.end-date-checkbox{
+  position: relative;
+  height: 3ch;
+  width: 3ch;
+}
+
+.end-date-checkbox input{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.end-date-checkbox-box{
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border: 2px solid #0079B4;
+  border-radius: 4px;
+  background-color: white;
+  opacity: 0.6;
+  user-select: none;
+  text-align: center;
+  font-size: 1.3rem !important;
+  padding-top: 4px;
+}
+
+.end-date-checkbox input:checked + .end-date-checkbox-box{
+  color: white;
+  background-color: #0079B4;
+  opacity: 1;
+}
+
+.end-date-checkbox input:focus-visible + .end-date-checkbox-box{
+  outline: auto -webkit-focus-ring-color;
+  opacity: 1;
+}
+
+#end-date{
+  display: none;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.fieldset-date input{
+  background-color: white;
+  box-shadow: none;
+}
+
+.fieldset-days{
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bookings-checkbox input{
+  position: absolute;
+  height: 3ch;
+  width: 3ch;
+  opacity: 0;
+}
+
+.bookings-checkbox-box{
+  display: grid;
+  place-items: center;
+  height: 3ch;
+  width: 3ch;
+  border: 2px solid #0079B4;
+  border-radius: 4px;
+  background-color: white;
+  opacity: 0.6;
+  user-select: none;
+  cursor: pointer;
+}
+
+.bookings-checkbox input:focus-visible + .bookings-checkbox-box{
+  outline: auto -webkit-focus-ring-color;
+  opacity: 1;
+}
+
+.bookings-checkbox input:checked + .bookings-checkbox-box{
+  color: white;
+  background-color: #0079B4;
+  opacity: 1;
+}
+
+#book-trip-button{
+  margin-top: 1rem;
+}
+
+.error-list{
+  margin-top: 1rem;
+  padding-left: min(2rem, 5vw);
+  color: #D0342C;
+}
+
+.error-list li:not(:first-child){
+  margin-top: 0.5rem;
+}
+
+.single-trip-placeholder:not(:last-child), .recurring-trip-placeholder:not(:last-child){
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.single-trip-placeholder:not(:last-child)::after, .recurring-trip-placeholder:not(:last-child)::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: -1rem;
+  left: 0;
+  background-color: #0079B4;
+  opacity: 50%;
+  border-radius: 3px;
+}
 
 /* ---------------------------- information.html ---------------------------- */
 .main-content-information h2{
@@ -240,7 +394,7 @@ header nav a{
   gap: 1rem;
 }
 
-.contact-form{
+.contact-form, .booking-form{
   display: grid;
   gap: 0.5rem;
   max-width: 500px;
@@ -380,9 +534,23 @@ textarea{
   resize: vertical;
 }
 
+fieldset{
+  border: none;
+  padding: 0;
+}
+
+legend{
+  margin-bottom: 0.5rem;
+  padding: 0;
+  color: #222222;
+  font-weight: 500;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                             JavaScript classes                             */
 /* -------------------------------------------------------------------------- */
+
+/* ----------------------- Classes for booking system ----------------------- */
 .trip-strings{
   display: none;
 }
@@ -395,16 +563,14 @@ p .trip-strings{
   margin-right: 0.5rem;
 }
 
-.single-trip-container{
+.trip-container{
   position: relative;
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 1fr 1fr;
   gap: 0.5rem;
   margin-bottom: 2rem;
 }
 
-.single-trip-container + .single-trip-container::before, .recurring-trip-container + .recurring-trip-container::before{
+.trip-container + .trip-container::before{
   content: "";
   position: absolute;
   width: 100%;
@@ -415,60 +581,22 @@ p .trip-strings{
   border-radius: 3px;
 }
 
-.s-trip-item-1{
-  justify-self: start;
-  align-self: start;
+.trip-item-location, .trip-time-day-item{
   display: flex;
+  flex-direction: column;
 }
 
-.s-trip-item-2{
-  justify-self: end;
-  align-self: start;
-}
-
-.s-trip-item-3{
-  justify-self: start;
-  align-self: end;
-  display: flex;
-  gap: 2rem;
-}
-
-.s-trip-item-4{
-  justify-self: end;
-  align-self: end;
-}
-
-.recurring-trip-container{
-  position: relative;
-  display: grid;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.r-trip-item-1{
-  display: flex;
-}
-
-.r-trip-item-2{
+.trip-days-item{
   display: flex;
   gap: 0.5rem;
 }
 
-.r-trip-item-3{
+.trip-time-day-item{
   display: flex;
-  gap: 2rem;
+  gap: 0.5rem;
 }
 
-.r-trip-item-4{
-  display: flex;
-  gap: 2rem;
-}
-
-.bookings-checkbox input{
-  display: none;
-}
-
-.bookings-checkbox-box{
+.trip-day-box{
   display: grid;
   place-items: center;
   height: 3ch;
@@ -476,15 +604,15 @@ p .trip-strings{
   border: 2px solid #0079B4;
   border-radius: 4px;
   background-color: white;
-  user-select: none;
+  opacity: 0.6;
 }
 
-.bookings-checkbox input:checked + .bookings-checkbox-box{
+.trip-day-box-active{
   color: white;
   background-color: #0079B4;
+  opacity: 1;
 }
 
-/* --------------------- Button to change or cancel trip -------------------- */
 .bookings-preview button{
   all: unset;
   color: #045883;
@@ -498,12 +626,57 @@ p .trip-strings{
   color: #222222;
 }
 
+/* -------------------------------- Modal box ------------------------------- */
+.modal{
+  position: fixed;
+  display: none;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+
+.modal-box{
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 1.5rem;
+  min-height: 20%;
+  width: 30%;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #FAFAFA;
+}
+
+.modal-button{
+  user-select: none;
+}
+
+.no-scroll{
+  overflow: hidden;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                Media queries                               */
 /* -------------------------------------------------------------------------- */
 @media (min-width: 576px){
   .hero-content{
     width: 80%;
+  }
+
+  .preview-bookings-box, .bookings-box{
+    border-radius: 1rem;
+    box-shadow: 
+      0 5px 10px rgba(0, 0, 0, 0.05),
+      0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .trip-item-location, .trip-time-day-item{
+    flex-direction: row;
+  }
+
+  .trip-time-day-item{
+    gap: 2rem;
   }
 }
 

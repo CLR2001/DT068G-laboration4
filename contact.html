@@ -69,7 +69,7 @@
         </div>
       </section>
     <div class="main-content main-content-contact">
-      <div class="contact-form-container">
+      <section class="contact-form-container">
         <h2>Frågor och synpunkter</h2>
         <form class="contact-form">
           <label for="first-name">Förnamn*</label>
@@ -80,17 +80,16 @@
           <input type="tel" name="tel" id="tel" autocomplete="tel">
           <label for="email">E-post*</label>
           <input type="email" name="email" id="email" autocomplete="email">
-          <label for="textarea">Meddelande:</label>
-          <textarea name="textarea" id="textarea"></textarea>
-          <label for="file-button">Bifoga fil</label>
+          <label for="contact-textarea">Meddelande:</label>
+          <textarea name="textarea" id="contact-textarea"></textarea>
+          <label for="form-file-button">Bifoga fil</label>
           <p>Här kan du bifoga filer. Du kan bifoga max 6 st filer. De får inte vara större än 15 MB totalt.</p>
           <button type="button" class="white-button" id="form-file-button">
             Lägg till filer
           </button>
           <button type="submit" class="blue-button" id="form-submit-button">Skicka meddelande</button>
         </form>
-      </div>
-      
+      </section>
     </div>
   </main>
 
@@ -112,6 +111,14 @@
       </nav>
     </div>
   </footer>
+
+  <!--Content from JavaScript-->
+  <div class="modal">
+    <div class="modal-box">
+      <p class="modal-content"></p>
+      <button type="button" class="blue-button modal-button">Tillbaka</button>
+    </div>
+  </div>
 
 </body>
 </html>

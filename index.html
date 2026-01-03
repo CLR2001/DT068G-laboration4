@@ -76,27 +76,29 @@
           <h3>Singel<span class="trip-strings">resor:</span></h3>
 
           <!-----------------------Gör detta i JS------------------------>
-          <div class="single-trip-container">
-            <p class="s-trip-item-1">
-              <span id="trip-start">Startplats</span>
+          <div class="trip-container single-trip-container">
+            <p class="trip-item-1">
+              <span id="trip-start">Lefflersgatan 2D</span>
               <span class="material-symbols-outlined">east</span>
-              <span id="trip-end">Slutplats</span>
+              <span id="trip-end">Ulfsparregatan 5E</span>
             </p>
-            <p class="s-trip-item-2">
-              <span class="trip-strings">Tid:</span>10:30
-            </p>
+            <div class="s-trip-item-2">
+              <p>
+                Tid: 10:30
+              </p>
+              <p>
+                Datum: 17-12-2025
+              </p>
+            </div>
             <div class="s-trip-item-3">
               <button type="button">Ändra</button>
               <button type="button">Avboka</button>
             </div>
-            <p class="s-trip-item-4">
-              <span class="trip-strings">Datum:</span>17-12-2025
-            </p>
           </div>
           
           <h3>Återkommande<span class="trip-strings">resor:</span></h3>
-          <div class="recurring-trip-container">
-            <p class="r-trip-item-1">
+          <div class="trip-container recurring-trip-container">
+            <p class="trip-item-1">
               <span id="trip-start">Startplats</span>
               <span class="material-symbols-outlined">east</span>
               <span id="trip-end">Slutplats</span>
@@ -133,10 +135,10 @@
             </div>
             <div class="r-trip-item-3">
               <p>
-                <span class="trip-strings">Tid:</span>10:30
+                Tid: 10:30
               </p>
               <p>
-                <span class="trip-strings">Datum:</span>17-12-2025
+                Datum: 17-12-2025
               </p>
             </div>
             <div class="r-trip-item-4">
@@ -196,6 +198,14 @@
       </nav>
     </div>
   </footer>
+
+  <!--Content from JavaScript-->
+  <div class="modal">
+    <div class="modal-box">
+      <p class="modal-content"></p>
+      <button type="button" class="blue-button modal-button">Tillbaka</button>
+    </div>
+  </div>
 
 </body>
 </html>
