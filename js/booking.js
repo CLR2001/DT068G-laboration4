@@ -2,7 +2,6 @@
 
 /* ---------------------------- Global variables ---------------------------- */
 let singleTrip = true;
-let inputs = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------------- Variables ------------------------------- */
@@ -128,6 +127,7 @@ function saveTrip(){
   const message = document.querySelector("#booking-textarea");
   const checkedDays = document.querySelectorAll(".checkbox-day:checked");
   const errorList = document.querySelector(".error-list");
+  let inputs = 0;
 
   /* -------------------- Controls inputs for single trips -------------------- */
   if(singleTrip){
@@ -282,10 +282,6 @@ function saveTrip(){
       inputs = 0;
       modalPopUp();
       writeTrip(recurringTripObject);
-    }
-
-    else{      
-      inputs = 0;
     }
   }
 }

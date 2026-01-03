@@ -25,10 +25,15 @@
 
   <header>
     <div class="header-content">
-      <a href="index.html">
+      <a href="index.html" class="headerImg">
         <img src="bilder/vt-logo-vit-text.svg" alt="Västtrafiks logo">
       </a>
       <nav>
+        <button type="button" class="hamburger-button">
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </button>
         <ul>
           <li><a href="index.html" class="nav-active">Startsida</a></li>
           <li><a href="booking.html">Boka resa</a></li>
@@ -37,15 +42,7 @@
           <li>
             <button type="button" class="login-button">
               <span class="material-symbols-outlined">login</span>
-              <span>Logga in</span>
-            </button>
-          </li>
-          <li class="nav-hamburger-item">
-            <button type="button" class="hamburger-button">
-              <div class="line"></div>
-              <div class="line"></div>
-              <div class="line"></div>
-              <span>Meny</span>
+              <span class="login-text">Logga in</span>
             </button>
           </li>
         </ul>
@@ -73,80 +70,10 @@
       <section class="bookings-preview">
         <h2>Dina bokningar</h2>
         <div class="preview-bookings-box">
-          <h3>Singel<span class="trip-strings">resor:</span></h3>
-
-          <!-----------------------Gör detta i JS------------------------>
-          <div class="trip-container single-trip-container">
-            <p class="trip-item-1">
-              <span id="trip-start">Lefflersgatan 2D</span>
-              <span class="material-symbols-outlined">east</span>
-              <span id="trip-end">Ulfsparregatan 5E</span>
-            </p>
-            <div class="s-trip-item-2">
-              <p>
-                Tid: 10:30
-              </p>
-              <p>
-                Datum: 17-12-2025
-              </p>
-            </div>
-            <div class="s-trip-item-3">
-              <button type="button">Ändra</button>
-              <button type="button">Avboka</button>
-            </div>
-          </div>
-          
-          <h3>Återkommande<span class="trip-strings">resor:</span></h3>
-          <div class="trip-container recurring-trip-container">
-            <p class="trip-item-1">
-              <span id="trip-start">Startplats</span>
-              <span class="material-symbols-outlined">east</span>
-              <span id="trip-end">Slutplats</span>
-            </p>
-            <div class="r-trip-item-2">
-              <label class="bookings-checkbox">
-                <input type="checkbox" id="m">
-                <span class="bookings-checkbox-box">M</span>
-              </label>
-              <label class="bookings-checkbox">
-                <input type="checkbox" id="ti">
-                <span class="bookings-checkbox-box">T</span>
-              </label>
-              <label class="bookings-checkbox">
-                <input type="checkbox" id="o">
-                <span class="bookings-checkbox-box">O</span>
-              </label>
-              <label class="bookings-checkbox">
-                <input type="checkbox" id="to">
-                <span class="bookings-checkbox-box">T</span>
-              </label>
-              <label class="bookings-checkbox">
-                <input type="checkbox" id="f">
-                <span class="bookings-checkbox-box">F</span>
-              </label>
-              <label class="bookings-checkbox">
-                <input type="checkbox" id="l">
-                <span class="bookings-checkbox-box">L</span>
-              </label>
-              <label class="bookings-checkbox">
-                <input type="checkbox" id="s">
-                <span class="bookings-checkbox-box">S</span>
-              </label>
-            </div>
-            <div class="r-trip-item-3">
-              <p>
-                Tid: 10:30
-              </p>
-              <p>
-                Datum: 17-12-2025
-              </p>
-            </div>
-            <div class="r-trip-item-4">
-              <button type="button">Ändra</button>
-              <button type="button">Avboka</button>
-            </div>
-          </div>
-  
+          <h3>Singel<span class="trip-strings">resor</span></h3>
+          <p class="trip-placeholder single-trip-placeholder">Du har inga bokade singel resor.</p>
+          <h3 class="recurring-title">Återkommande<span class="trip-strings">resor</span></h3>
+          <p class="trip-placeholder recurring-trip-placeholder">Du har inga bokade återkommande resor.</p>
         </div>
       </section>
       <a href="booking.html" class="blue-button link-button">Boka resa</a>
