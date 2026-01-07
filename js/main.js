@@ -1,5 +1,7 @@
 "use strict";
 
+let singleTrip = true;
+
 document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------------- Variables ------------------------------- */
   const body = document.querySelector("body");
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalContent = document.querySelector(".modal-content");
   const modalExitButton = document.querySelector(".modal-button");
   const loginButton = document.querySelector(".login-button");
+  const bookingButton = document.querySelector("#book-trip-button");
   const fileButton = document.querySelector("#form-file-button");
   const sendMessageButton = document.querySelector("#form-submit-button");
   const hamburgerButton = document.querySelector(".hamburger-button");
@@ -43,6 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, false);
   }
 
+  /* ----------------------------- Booking button ----------------------------- */
+  if(bookingButton){
+    bookingButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      modalContent.innerHTML = 'Din resa är bokad. Hantera den på undersidan "Boka resa" under rubriken "Dina bokningar" eller på startsidan.';
+      saveTrip();
+    });
+  }
+
   /* ----------------------------- Contact buttons ---------------------------- */
   if(fileButton){
     fileButton.addEventListener('click', () => {
@@ -58,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   writeTripsAtLoad();
-
+  singleOrRecurringTrip();
 }, false);
 
 /* ----------------------- Function for hamburger menu ---------------------- */
@@ -117,57 +129,274 @@ function closeModal(){
   console.log("Modal closed");
 }
 
-/* ------------ Function to send message and control user inputs ------------ */
-function sendMessage(){
-  const modalContent = document.querySelector(".modal-content");
-  const contactForm = document.querySelector(".contact-form");
-  const firstNameInput = document.querySelector("#first-name");
-  const emailInput = document.querySelector("#email");
-  const contactTextarea = document.querySelector("#contact-textarea");
+/* ------- Function to swap between single or recurring booking system ------ */
+function singleOrRecurringTrip(){
+  const bookingForm = document.querySelector(".booking-form");
+  const singleTripButton = document.querySelector("#single-trip-button");
+  const recurringTripButton = document.querySelector("#recurring-trip-button");
+  const recurringOptions = document.querySelectorAll(".recurring-option");
+  const singleOptions = document.querySelectorAll(".single-option");
+  const endDateCheckbox = document.querySelector(".end-date-checkbox input");
+  const endDate = document.querySelector("#end-date");
+  const endDateLegend = document.querySelector("#end-date-string");
   const errorList = document.querySelector(".error-list");
-  let inputs = 0;
-  const requiredInputs = 3;
-  console.log(inputs);
-  
-  errorList.innerHTML = "";
-  if(firstNameInput.value === ""){
-    let error = document.createElement("li");
-    error.innerHTML = "Förnamn måste anges"
-    errorList.append(error);
-    console.log("User didn't input first name");
-  }
-  else{
-    inputs++;
-  }
-  if(emailInput.value === ""){
-    let error = document.createElement("li");
-    error.innerHTML = "E-post måste anges"
-    errorList.append(error);
-    console.log("User didn't input email");
-  }
-  else{
-    inputs++;
-  }
-  if(contactTextarea.value === ""){
-    let error = document.createElement("li");
-    error.innerHTML = "Meddelande måste anges"
-    errorList.append(error);
-    console.log("User didn't input message");
-  }
-  else{
-    inputs++;
+
+  if(singleTripButton){
+    singleTripButton.addEventListener('click', function() {
+      bookingForm.reset();
+
+      singleTripButton.style.border = "none";
+      singleTripButton.style.backgroundColor = "white";
+      singleTripButton.style.boxShadow = "none";
+      recurringTripButton.style.boxShadow = "inset 5px -5px 10px rgba(0, 40, 60, 0.1)";
+      recurringTripButton.style.backgroundColor = "#dfdfdf";
+
+      singleOptions.forEach(option => {
+        option.style.display = "block";
+      })
+      recurringOptions.forEach(option => {
+        option.style.display = "none";
+      })
+
+      singleTrip = true;
+      errorList.innerHTML = "";
+      console.log("User selected single trips");
+    }, false);
   }
 
-  console.log(inputs);
-  
-  if(inputs === requiredInputs){
-    modalContent.innerHTML = "Ditt meddelande har skickats.";
-    modalPopUp();
-    contactForm.reset();
-    console.log("User sent message");
+  if(recurringTripButton){
+    recurringTripButton.addEventListener('click', function() {
+      bookingForm.reset();
+
+      recurringTripButton.style.border = "none";
+      recurringTripButton.style.backgroundColor = "white";
+      recurringTripButton.style.boxShadow = "none";
+      singleTripButton.style.boxShadow = "inset -5px -5px 10px rgba(0, 40, 60, 0.1)";
+      singleTripButton.style.backgroundColor = "#dfdfdf";
+
+      recurringOptions.forEach(option => {
+        option.style.display = "block";
+      })
+      singleOptions.forEach(option => {
+        option.style.display = "none";
+      })
+
+      singleTrip = false;
+      errorList.innerHTML = "";
+      console.log("User selected recurring trips");
+      
+    }, false);
+  }
+
+  if(endDateCheckbox){
+    endDateCheckbox.addEventListener('click', function() {
+      if(endDateCheckbox.checked){
+        endDate.style.display = "block";
+        endDateLegend.innerHTML = "Slutdatum:";
+      }
+      else{
+        endDate.style.display = "none"
+        endDateLegend.innerHTML = "Slutdatum?";
+      }
+    }, false);
+  }
+}
+
+/* ------------- Function to save user trip info to localStorage ------------ */
+function saveTrip(){
+  const bookingForm = document.querySelector(".booking-form");
+  const startPosition = document.querySelector("#start");
+  const endPosition = document.querySelector("#end");
+  const date = document.querySelector("#date");
+  const startDate = document.querySelector("#start-date");
+  const endDate = document.querySelector("#end-date");
+  const endDateCheckbox = document.querySelector("#end-date-button");
+  const time = document.querySelector("#time");
+  const message = document.querySelector("#booking-textarea");
+  const checkedDays = document.querySelectorAll(".checkbox-day:checked");
+  const errorList = document.querySelector(".error-list");
+  let inputs = 0;
+
+  /* -------------------- Controls inputs for single trips -------------------- */
+  if(singleTrip){
+    const requiredInputs = 4;
+    errorList.innerHTML = "";
+    
+    if(startPosition.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Startplats måste anges"
+      errorList.append(error);
+      console.log("User didn't input start position");
+    }
+    else{
+      inputs++;
+    }
+    if(endPosition.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Slutplats måste anges"
+      errorList.append(error);
+      console.log("User didn't input end position");
+    }
+    else{
+      inputs++;
+    }
+    if(date.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Datum måste anges"
+      errorList.append(error);
+      console.log("User didn't input date");
+    }
+    else{
+      inputs++;
+    }
+    if(time.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Tid måste anges"
+      errorList.append(error);
+      console.log("User didn't input time");
+    }
+    else{
+      inputs++;
+    }
+
+    /* ------------------- Saves single trip to local storage ------------------- */
+    if(inputs === requiredInputs){
+      let singleTripObject = {
+        id: Date.now(),
+        startPosition: startPosition.value,
+        endPosition: endPosition.value,
+        date: date.value,
+        time: time.value,
+        message: message.value,
+        isSingle: "yes"
+      };
+      console.log(singleTripObject);
+      let singleTripsList = JSON.parse(localStorage.getItem("singleTripsList")) || [];
+      singleTripsList.push(singleTripObject);
+      localStorage.setItem("singleTripsList", JSON.stringify(singleTripsList));
+      bookingForm.reset();
+      inputs = 0;
+      modalPopUp();
+      writeTrip(singleTripObject);
+    }
+
+    else{      
+      inputs = 0;
+      scrollTo(errorList);
+    }
+  }
+
+  /* ------------------- Controls inputs for recurring trips ------------------ */
+  else{
+    const requiredInputs = endDateCheckbox.checked ? 6 : 5;
+    errorList.innerHTML = "";
+    if(startPosition.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Startplats måste anges"
+      errorList.append(error);
+      console.log("User didn't input start position");
+    }
+    else{
+      inputs++;
+    }
+    if(endPosition.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Slutplats måste anges"
+      errorList.append(error);
+      console.log("User didn't input end position");
+    }
+    else{
+      inputs++;
+    }
+    if(startDate.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Startdatum måste anges"
+      errorList.append(error);
+      console.log("User didn't input start date");
+    }
+    else{
+      inputs++;
+    }
+    if(endDateCheckbox.checked && endDate.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Slutdatum måste anges"
+      errorList.append(error);
+      console.log("User didn't input end date");
+    }
+    else if(endDateCheckbox.checked && endDate.value !== ""){
+      inputs++;
+    }
+    if(time.value === ""){
+      let error = document.createElement("li");
+      error.innerHTML = "Tid måste anges"
+      errorList.append(error);
+      console.log("User didn't input time");
+    }
+    else{
+      inputs++;
+    }
+    if(checkedDays.length === 0){
+      let error = document.createElement("li");
+      error.innerHTML = "Åtminstone en dag måste anges"
+      errorList.append(error);
+      console.log("User didn't input recurring day/days time");
+    }
+    else{
+      inputs++;
+    }
+
+    /* ------------------ Saves recurring trip to local storage ----------------- */
+    if(inputs === requiredInputs){
+      let recurringTripObject = {
+        id: Date.now(),
+        startPosition: startPosition.value,
+        endPosition: endPosition.value,
+        startDate: startDate.value,
+        time: time.value,
+        message: message.value,
+        isSingle: "no"
+      };
+      if(endDateCheckbox.checked){
+        recurringTripObject.endDate = endDate.value;
+      }
+      let daysIdList = [];
+      checkedDays.forEach(day => {
+        daysIdList.push(day.id);
+      })
+      recurringTripObject.days = daysIdList;
+      let recurringTripsList = JSON.parse(localStorage.getItem("recurringTripsList")) || [];
+      recurringTripsList.push(recurringTripObject);
+      localStorage.setItem("recurringTripsList", JSON.stringify(recurringTripsList));
+      bookingForm.reset();
+      inputs = 0;
+      modalPopUp();
+      writeTrip(recurringTripObject);
+    }
+    else{
+      inputs = 0;
+      scrollTo(errorList);
+    }
+  }
+}
+
+/* ----------- Function to delete user trip info from localStorage ---------- */
+function deleteTrip(tripObject){
+  let singleTripsList = JSON.parse(localStorage.getItem("singleTripsList")) || [];
+  let recurringTripsList = JSON.parse(localStorage.getItem("recurringTripsList")) || [];
+ 
+  if(tripObject.isSingle === "yes"){
+    const index = singleTripsList.findIndex(item => JSON.stringify(item) === JSON.stringify(tripObject));
+    if(index !== -1){
+      singleTripsList.splice(index, 1);
+    }
+    localStorage.setItem("singleTripsList", JSON.stringify(singleTripsList));
   }
   else{
-    scrollTo(errorList);
+    const index = recurringTripsList.findIndex(item => JSON.stringify(item) === JSON.stringify(tripObject));
+    if(index !== -1){
+      recurringTripsList.splice(index, 1);
+    }
+    localStorage.setItem("recurringTripsList", JSON.stringify(recurringTripsList));
   }
 }
 
@@ -306,9 +535,64 @@ function writeTripsAtLoad(){
   }
 }
 
+/* ---------------- Function to scroll window to specific id ---------------- */
 function scrollTo(id){
   id.scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
+}
+
+/* ------------ Function to send message and control user inputs ------------ */
+function sendMessage(){
+  const modalContent = document.querySelector(".modal-content");
+  const contactForm = document.querySelector(".contact-form");
+  const firstNameInput = document.querySelector("#first-name");
+  const emailInput = document.querySelector("#email");
+  const contactTextarea = document.querySelector("#contact-textarea");
+  const errorList = document.querySelector(".error-list");
+  let inputs = 0;
+  const requiredInputs = 3;
+  console.log(inputs);
+  
+  errorList.innerHTML = "";
+  if(firstNameInput.value === ""){
+    let error = document.createElement("li");
+    error.innerHTML = "Förnamn måste anges"
+    errorList.append(error);
+    console.log("User didn't input first name");
+  }
+  else{
+    inputs++;
+  }
+  if(emailInput.value === ""){
+    let error = document.createElement("li");
+    error.innerHTML = "E-post måste anges"
+    errorList.append(error);
+    console.log("User didn't input email");
+  }
+  else{
+    inputs++;
+  }
+  if(contactTextarea.value === ""){
+    let error = document.createElement("li");
+    error.innerHTML = "Meddelande måste anges"
+    errorList.append(error);
+    console.log("User didn't input message");
+  }
+  else{
+    inputs++;
+  }
+
+  console.log(inputs);
+  
+  if(inputs === requiredInputs){
+    modalContent.innerHTML = "Ditt meddelande har skickats.";
+    modalPopUp();
+    contactForm.reset();
+    console.log("User sent message");
+  }
+  else{
+    scrollTo(errorList);
+  }
 }
