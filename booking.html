@@ -69,8 +69,8 @@
       <section class="bookings-preview">
         <h2>Dina bokningar</h2>
         <div class="preview-bookings-box">
-          <h3>Singel<span class="trip-strings">resor</span></h3>
-          <p class="trip-placeholder single-trip-placeholder">Du har inga bokade singel resor.</p>
+          <h3>Enkel<span class="trip-strings">resor</span></h3>
+          <p class="trip-placeholder single-trip-placeholder">Du har inga bokade enkel resor.</p>
           <h3 class="recurring-title">Återkommande<span class="trip-strings">resor</span></h3>
           <p class="trip-placeholder recurring-trip-placeholder">Du har inga bokade återkommande resor.</p>
         </div>
@@ -78,15 +78,15 @@
       <h2>Boka resa</h2>
       <div class="bookings-box">
         <div class="bookings-box-buttons">
-          <button type="button" id="single-trip-button">Singel</button>
+          <button type="button" id="single-trip-button">Enkel</button>
           <button type="button" id="recurring-trip-button">Återkommande</button>
         </div>
         <form class="booking-form">
           <div class="error-list"></div>
           <label for="start">Startplats:</label>
-          <input type="text" name="address" id="start" autocomplete="address-line1">
+          <input type="text" name="startAddress" id="start">
           <label for="end">Slutplats:</label>
-          <input type="text" name="address" id="end" autocomplete="address-line1">
+          <input type="text" name="endAddress" id="end">
           <label for="date" class="single-option">Datum:</label>
           <input type="date" name="date" class="single-option" id="date">
           <label for="start-date" class="recurring-option">Startdatum:</label>

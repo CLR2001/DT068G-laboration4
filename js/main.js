@@ -118,6 +118,7 @@ function closeModal(){
   const main = document.querySelector("main");
   const footer = document.querySelector("footer");
   const modal = document.querySelector(".modal");
+  const modalButton = document.querySelector(".modal-button");
   modal.style.display = "none";
   if(!header.classList.contains("hamburger-open")){
     body.classList.remove("no-scroll");
@@ -126,6 +127,7 @@ function closeModal(){
   header.inert = false;
   main.inert = false;
   footer.inert = false;
+  modalButton.style.display = "block";
   console.log("Modal closed");
 }
 
@@ -405,6 +407,7 @@ function writeTrip(tripObject){
   const previewBox = document.querySelector(".preview-bookings-box");
   const insertPointSingle = document.querySelector(".recurring-title");
   const modalContent = document.querySelector(".modal-content");
+  const modalButton = document.querySelector(".modal-button");
   const singlePlaceholder = document.querySelector(".single-trip-placeholder");
   const recurringPlaceholder = document.querySelector(".recurring-trip-placeholder");
   
@@ -432,16 +435,41 @@ function writeTrip(tripObject){
     item3.type = "button";
     item3.textContent = "Avboka";
     item3.addEventListener('click', () => {
-      container.remove();
-      modalContent.innerHTML = 'Din resa är avbokad.';
-      if(previewBox.querySelector("div.single-trip-container")){
-        singlePlaceholder.style.display = "none";
-      }
-      else{
-        singlePlaceholder.style.display = "block";
-      }
-      deleteTrip(tripObject)
+      modalContent.innerHTML="";
+      modalButton.style.display = "none"
+      let confirmMessage = document.createElement("p");
+      confirmMessage.textContent = "Är du säker?";
+      let confirmButtonsContainer = document.createElement("div");
+      confirmButtonsContainer.style.display = "flex";
+      confirmButtonsContainer.style.gap = "0.5rem";
+      confirmButtonsContainer.style.marginTop = "1.5rem";
+      let confirmButton = document.createElement("button");
+      confirmButton.textContent = "Ja";
+      confirmButton.classList.add("white-button");
+      confirmButton.addEventListener('click', () => {
+        container.remove();
+        if(previewBox.querySelector("div.single-trip-container")){
+          singlePlaceholder.style.display = "none";
+        }
+        else{
+          singlePlaceholder.style.display = "block";
+        }
+        deleteTrip(tripObject)
+        closeModal();
+      });
+
+      let cancelButton = document.createElement("button");
+      cancelButton.textContent = "Nej";
+      cancelButton.classList.add("white-button");
+      cancelButton.addEventListener('click', () => {
+        closeModal();
+      });
+
+      confirmButtonsContainer.append(confirmButton, cancelButton);
+      modalContent.append(confirmMessage, confirmButtonsContainer);
+      
       modalPopUp();
+
     }, false);
     
     container.append(item1, item2, item3);
@@ -498,16 +526,41 @@ function writeTrip(tripObject){
     item4.type = "button";
     item4.textContent = "Avboka";
     item4.addEventListener('click', () => {
-      container.remove();
-      modalContent.innerHTML = 'Din resa är avbokad.';
-      if(previewBox.querySelector("div.recurring-trip-container")){
-        recurringPlaceholder.style.display = "none";
-      }
-      else{
-        recurringPlaceholder.style.display = "block";
-      }
-      deleteTrip(tripObject)
+      modalContent.innerHTML="";
+      modalButton.style.display = "none"
+      let confirmMessage = document.createElement("p");
+      confirmMessage.textContent = "Är du säker?";
+      let confirmButtonsContainer = document.createElement("div");
+      confirmButtonsContainer.style.display = "flex";
+      confirmButtonsContainer.style.gap = "0.5rem";
+      confirmButtonsContainer.style.marginTop = "1.5rem";
+      let confirmButton = document.createElement("button");
+      confirmButton.textContent = "Ja";
+      confirmButton.classList.add("white-button");
+      confirmButton.addEventListener('click', () => {
+        container.remove();
+        if(previewBox.querySelector("div.recurring-trip-container")){
+          recurringPlaceholder.style.display = "none";
+        }
+        else{
+          recurringPlaceholder.style.display = "block";
+        }
+        deleteTrip(tripObject)
+        closeModal();
+      });
+
+      let cancelButton = document.createElement("button");
+      cancelButton.textContent = "Nej";
+      cancelButton.classList.add("white-button");
+      cancelButton.addEventListener('click', () => {
+        closeModal();
+      });
+
+      confirmButtonsContainer.append(confirmButton, cancelButton);
+      modalContent.append(confirmMessage, confirmButtonsContainer);
+      
       modalPopUp();
+      
     }, false);
 
     container.append(item1, item2, item3, item4);
@@ -553,7 +606,6 @@ function sendMessage(){
   const errorList = document.querySelector(".error-list");
   let inputs = 0;
   const requiredInputs = 3;
-  console.log(inputs);
   
   errorList.innerHTML = "";
   if(firstNameInput.value === ""){
@@ -583,8 +635,6 @@ function sendMessage(){
   else{
     inputs++;
   }
-
-  console.log(inputs);
   
   if(inputs === requiredInputs){
     modalContent.innerHTML = "Ditt meddelande har skickats.";

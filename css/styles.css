@@ -757,9 +757,8 @@ p .trip-strings{
 
 .modal-box{
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-auto-rows: min-content;
   gap: 1.5rem;
-  min-height: 20%;
   width: min(90%, 700px);
   padding: 2rem;
   border-radius: 1rem;
