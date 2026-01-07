@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------- Button functionality -------------------------- */
   bookingButton.addEventListener('click', (event) => {
     event.preventDefault();
-    modalContent.innerHTML = 'Din resa är bokad. Hantera den under undersidan "Boka resa" under rubriken "Dina bokningar" eller på startsidan.';
+    modalContent.innerHTML = 'Din resa är bokad. Hantera den på undersidan "Boka resa" under rubriken "Dina bokningar" eller på startsidan.';
     saveTrip();
   })
 
