@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Västtrafik: färdtjänst</title>
+  <title>Västtrafik: kontakt</title>
   <!--CSS & JavaScript-->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -69,6 +69,7 @@
       <section class="contact-form-container">
         <h2>Frågor och synpunkter</h2>
         <form class="contact-form">
+          <div class="error-list"></div>
           <label for="first-name">Förnamn*</label>
           <input type="text" name="first-name"  id="first-name" autocomplete="given-name">
           <label for="surname">Efternamn</label>
@@ -85,9 +86,19 @@
             Lägg till filer
           </button>
           <button type="submit" class="blue-button" id="form-submit-button">Skicka meddelande</button>
-          <div class="error-list"></div>
         </form>
       </section>
+      <div class="contact-paragraph">
+        <p>
+          Vi värnar om din integritet. 
+          När du använder vårt kontaktformulär sparas ingen personlig användardata utöver det specifika syftet att hantera och besvara din förfrågan. 
+          De uppgifter du lämnar används endast för denna kommunikation och raderas när de inte längre är nödvändiga. 
+        </p>
+        <p>
+          Vi följer strikt GDPR (General Data Protection Regulation) för att säkerställa att all databehandling sker lagligt, 
+          transparent och med största möjliga respekt för dina rättigheter.
+        </p>
+      </div>
     </div>
   </main>
 

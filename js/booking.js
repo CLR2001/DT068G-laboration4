@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------- Button functionality -------------------------- */
   bookingButton.addEventListener('click', (event) => {
     event.preventDefault();
-    modalContent.innerHTML = 'Din resa är bokad. Hantera den under fliken "Dina bokningar".';
+    modalContent.innerHTML = 'Din resa är bokad. Hantera den under undersidan "Boka resa" under rubriken "Dina bokningar" eller på startsidan.';
     saveTrip();
   })
 
@@ -194,6 +194,7 @@ function saveTrip(){
 
     else{      
       inputs = 0;
+      scrollTo(errorList);
     }
   }
 
@@ -283,6 +284,10 @@ function saveTrip(){
       modalPopUp();
       writeTrip(recurringTripObject);
     }
+    else{
+      inputs = 0;
+      scrollTo(errorList);
+    }
   }
 }
 
@@ -318,7 +323,6 @@ function writeTrip(tripObject){
   const modalContent = document.querySelector(".modal-content");
   const singlePlaceholder = document.querySelector(".single-trip-placeholder");
   const recurringPlaceholder = document.querySelector(".recurring-trip-placeholder");
-  console.log(tripObject);
   
   if(tripObject.isSingle === "yes"){
     let container = document.createElement("div");
@@ -445,4 +449,11 @@ function writeTripsAtLoad(){
       writeTrip(trip);
     })
   }
+}
+
+function scrollTo(id){
+  id.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }

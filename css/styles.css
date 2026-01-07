@@ -1,7 +1,6 @@
 :root {
   font-size: clamp(1rem, 0.1vw + 1rem, 1.125rem);
   letter-spacing: 0.5px;
-  /*max-width: clamp(55ch, 80%, 75ch);*/
 }
 
 body{
@@ -198,7 +197,7 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
   position: relative;
   display: flex;
   align-items: end;
-  height: min(40vh, 400px);
+  min-height: min(40vh, 400px);
 }
 
 .hero-image{
@@ -225,7 +224,7 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
 .hero-content-container{
   display: flex;
   align-items: center;
-  width: min(100%, 1000px);
+  width: min(100%, 800px);
   min-height: 60%;
   margin-left: clamp(1rem, 5vw, 2rem);
   margin-right: clamp(1rem, 5vw, 2rem);
@@ -237,8 +236,9 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
 }
 
 .hero-content{
+  max-width: 60ch;
   margin: 0 auto;
-  color: #FAFAFA;
+  color: white;
 }
 
 .hero-content h1{
@@ -276,7 +276,7 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
 }
 
 .faq-section{
-  max-width: clamp(55ch, 80%, 75ch);
+  max-width: clamp(40ch, 80%, 60ch);
   padding: clamp(1rem, 5vw, 2rem);
 }
 
@@ -429,9 +429,10 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
 }
 
 .error-list{
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding-left: min(2rem, 5vw);
   color: #D0342C;
+  scroll-margin-top: 50px
 }
 
 .error-list li:not(:first-child){
@@ -464,6 +465,10 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
   padding: clamp(1rem, 5vw, 2rem);
 }
 
+.main-content-information section{
+  max-width: clamp(40ch, 80%, 60ch);
+}
+
 .main-content-information h2{
   margin-bottom: 1rem;
 }
@@ -492,6 +497,14 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
 #form-submit-button{
   width: 100%;
 }
+
+.contact-paragraph{
+  display: grid;
+  gap: 1.5ch;
+  max-width: 500px;
+  font-size: 85%;
+  color: #555555;
+}
 /* --------------------------------- Footer --------------------------------- */
 footer{
   padding: 2rem;
@@ -514,7 +527,7 @@ footer a{
   color: #FAFAFA;
 }
 
-footer a:focus{
+footer a:focus-visible{
   outline-offset: 5px;
 }
 
@@ -527,6 +540,16 @@ footer ul div{
 
 footer img{
   height: 2rem;
+}
+
+/* -------------------- tillganglighetsredogorelser.html -------------------- */
+.main-content-tillganglighet h2{
+  text-wrap: pretty;
+}
+
+.main-content-tillganglighet h3{
+  margin-bottom: 1rem;
+  color: #2e2e2e;
 }
 
 /* ----------------------------- Global buttons ----------------------------- */
@@ -550,6 +573,11 @@ button{
   transition: 
     transform ease-out 0.1s,
     background-color ease-out 0.1s;
+  user-select: none;
+}
+
+.blue-button:active{
+  filter: saturate(0.5);
 }
 
 .white-button{
@@ -564,10 +592,15 @@ button{
   box-shadow: 
     0 5px 10px rgba(0, 40, 60, 0.15),
     0 15px 30px rgba(0, 40, 60, 0.2);
+  user-select: none;
 }
 
-.white-button:focus{
+.white-button:focus-visible{
   outline: auto -webkit-focus-ring-color;
+}
+
+.white-button:active{
+  filter: saturate(0.1);
 }
 
 .link-button{
@@ -601,7 +634,7 @@ input, textarea{
     0 10px 20px rgba(0, 40, 60, 0.08);
 }
 
-input:focus, textarea:focus{
+input:focus-visible, textarea:focus-visible{
   outline: none;
   border: 2px solid rgba(128, 128, 128, 0.9);
 }
@@ -754,7 +787,7 @@ p .trip-strings{
 /* -------------------------------------------------------------------------- */
 @media (min-width: 576px){
   .hero-content-container{
-    width: min(85%, 1000px);
+    width: min(85%, 800px);
     margin: 0 auto;
   }
   
