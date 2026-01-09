@@ -502,6 +502,7 @@ header.hamburger-open nav ul li a, header.hamburger-open nav ul li button{
   display: grid;
   gap: 1.5ch;
   max-width: 500px;
+  padding: clamp(1rem, 5vw, 2rem);
   font-size: 85%;
   color: #555555;
 }
