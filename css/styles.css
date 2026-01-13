@@ -33,6 +33,12 @@ body{
   vertical-align: middle;
 }
 
+ol{
+  display: grid;
+  gap: 1ch;
+  margin-top: 1ch;
+}
+
 /* -------------------------- Header and Navigation ------------------------- */
 header{
   min-height: 80px;
